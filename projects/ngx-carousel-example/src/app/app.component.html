@@ -1,0 +1,11 @@
+<div>
+  <ngx-carousel [items]="cards"
+                scrollSpeed="1">
+    <ng-template #carouselItem
+                 let-item>
+      <div class="Carousel__Item card">
+        {{item}}
+      </div>
+    </ng-template>
+  </ngx-carousel>
+</div>

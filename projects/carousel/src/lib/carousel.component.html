@@ -1,0 +1,12 @@
+<div #carousel
+     (scroll)="onScroll()"
+     (mouseup)="onMouseUp()"
+     (mousedown)="onMouseDown($event)"
+     (mousemove)="onMouseMove($event)"
+     class="Carousel">
+  <ng-container *ngFor="let item of items">
+    <ng-container [ngTemplateOutlet]="carouselItemTemplate"
+                  [ngTemplateOutletContext]="{ $implicit: item }">
+    </ng-container>
+  </ng-container>
+</div>

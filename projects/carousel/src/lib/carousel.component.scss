@@ -1,0 +1,19 @@
+:host {
+  display: block;
+}
+
+.Carousel {
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 15px;
+  overflow-y: hidden;
+  white-space: nowrap;
+  overflow-x: auto;
+  cursor: grab;
+  -ms-overflow-style: none;  // IE 10+
+  scrollbar-width: none;  // Firefox
+
+  &::-webkit-scrollbar {
+    display: none;  // Safari and Chrome
+  }
+}
