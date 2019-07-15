@@ -1,27 +1,80 @@
-# NgxCarousel
+# Carousel
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.0.
+This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
 
-## Development server
+## Demo
+[Demo](https://picknmark.github.io/carousel/index.html)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Installation
+```typescript
+import { CarouselModule } from 'carousel';
 
-## Code scaffolding
+@NgModule({
+  imports: [CarouselModule]
+})
+export class AppModule {}
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Usage
+```typescript
+// app.component.ts
+import { Component } from '@angular/core';
 
-## Build
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+}
+```
+```typescript
+// app.component.html
+<pnm-carousel [items]="cards"
+              scrollSpeed="1">
+    <ng-template #carouselItem
+                 let-item>
+      <div class="card">
+        {{item}}
+      </div>
+    </ng-template>
+</app-carousel>
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```css
+.card {
+  position: relative;
+  display: block;
+  width: 210px;
+  min-width: 210px;
+  height: 250px;
+  margin-right: 18px;
+  border-radius: 10px;
+  padding: 5px;
+  transition: all .250s;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
+  cursor: pointer;
+}
+
+```
+
+## Inputs
+```typescript
+items: Array<any>;
+scrollSpeed: CarouselSpeed = CarouselSpeed.default;
+```
+
+#### Carousel Speed
+```typescript
+export enum CarouselSpeed {
+  default,
+  fast,
+  fastest,
+}
+
+```
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Run `ng test carousel` to execute the unit tests via [Karma](https://karma-runner.github.io).

@@ -3,7 +3,7 @@
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
 
 ## Demo
-[Demo](https://www.google.com)
+[Demo](https://picknmark.github.io/carousel/index.html)
 
 ## Installation
 ```typescript
@@ -61,16 +61,19 @@ export class AppComponent {
 
 ## Inputs
 ```typescript
-
+items: Array<any>;
+scrollSpeed: CarouselSpeed = CarouselSpeed.default;
 ```
 
-## Build
+#### Carousel Speed
+```typescript
+export enum CarouselSpeed {
+  default,
+  fast,
+  fastest,
+}
 
-Run `ng build carousel` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Publishing
-
-After building your library with `ng build carousel`, go to the dist folder `cd dist/ngx-carousel` and run `npm publish`.
+```
 
 ## Running unit tests
 

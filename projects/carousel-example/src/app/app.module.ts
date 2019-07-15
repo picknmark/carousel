@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { NgxCarouselModule } from 'ngx-carousel';
+import { CarouselModule } from 'carousel';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    NgxCarouselModule,
+    CarouselModule,
     CommonModule,
   ],
   providers: [],

@@ -1,9 +1,25 @@
 {
-  "name": "carousel",
-  "version": "0.0.1",
+  "name": "@hmurrar/carousel",
+  "version": "0.1.0",
   "peerDependencies": {
     "@angular/common": "^8.0.3",
     "@angular/core": "^8.0.3",
     "scroll-behavior-polyfill": "^2.0.8"
-  }
+  },
+  "description": "Carousel library wrapper",
+  "main": "karma.conf.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "@hmurrar",
+  "license": "ISC",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/picknmark/carousel.git"
+  },
+  "bugs": {
+    "url": "https://github.com/picknmark/carousel/issues"
+  },
+  "homepage": "https://github.com/picknmark/carousel#readme"
 }
