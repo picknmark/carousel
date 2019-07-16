@@ -6,7 +6,13 @@ This library was generated with [Angular CLI](https://github.com/angular/angular
 [Demo](https://picknmark.github.io/carousel/index.html)
 
 ## Installation
+```bash
+npm i --save @hmurrar/carousel
+```
+
+## Usage
 ```typescript
+// app.module.ts
 import { CarouselModule } from 'carousel';
 
 @NgModule({
@@ -14,8 +20,6 @@ import { CarouselModule } from 'carousel';
 })
 export class AppModule {}
 ```
-
-## Usage
 ```typescript
 // app.component.ts
 import { Component } from '@angular/core';
@@ -39,7 +43,7 @@ export class AppComponent {
         {{item}}
       </div>
     </ng-template>
-</app-carousel>
+</pnm-carousel>
 ```
 
 ```css
