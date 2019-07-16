@@ -1,6 +1,6 @@
 {
   "name": "@hmurrar/carousel",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "peerDependencies": {
     "@angular/common": "^8.0.3",
     "@angular/core": "^8.0.3",
@@ -8,6 +8,8 @@
   },
   "description": "Carousel library wrapper",
   "scripts": {
+    "build": "ng build",
+    "npm_pack": "cd ../../dist/carousel && npm pack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "@hmurrar",
