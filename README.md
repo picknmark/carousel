@@ -7,6 +7,9 @@ This library was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Installation
 ```bash
+npm install --save scroll-behavior-polyfill
+```
+```bash
 npm i --save @hmurrar/carousel
 ```
 
