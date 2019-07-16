@@ -1,19 +1,18 @@
 {
   "name": "@hmurrar/carousel",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "peerDependencies": {
     "@angular/common": "^8.0.3",
     "@angular/core": "^8.0.3",
     "scroll-behavior-polyfill": "^2.0.8"
   },
   "description": "Carousel library wrapper",
-  "main": "karma.conf.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "@hmurrar",
   "license": "ISC",
-  "keywords": [],
+  "keywords" :["Angular", "Carousel", "Angular 8", "Angular CLI"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/picknmark/carousel.git"
