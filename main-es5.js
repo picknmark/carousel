@@ -24,6 +24,8 @@ __webpack_require__.r(__webpack_exports__);
  */
 var CarouselComponent = /** @class */ (function () {
     function CarouselComponent() {
+        // outputs
+        this.scrollEnd = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         // is mouse down
         this.isMouseDown = false;
     }
@@ -122,10 +124,33 @@ var CarouselComponent = /** @class */ (function () {
         var walk = (x - this.startX) * 0.75;
         carousel.scrollLeft = this.scrollLeft - walk;
     };
+    /**
+     * emit true once the scroll of
+     * the carousel reaches 70% of its whole width
+     */
+    /**
+     * emit true once the scroll of
+     * the carousel reaches 70% of its whole width
+     * @return {?}
+     */
+    CarouselComponent.prototype.onScroll = /**
+     * emit true once the scroll of
+     * the carousel reaches 70% of its whole width
+     * @return {?}
+     */
+    function () {
+        /** @type {?} */
+        var scrollLeft = this.carousel.nativeElement.scrollLeft;
+        /** @type {?} */
+        var scrollWidth = this.carousel.nativeElement.scrollWidth;
+        if (scrollLeft >= scrollWidth * 0.70) {
+            this.scrollEnd.emit(true);
+        }
+    };
     CarouselComponent.decorators = [
         { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"], args: [{
                     selector: 'pnm-carousel',
-                    template: "<div #carousel\r\n     (mouseup)=\"onMouseUp()\"\r\n     (mousedown)=\"onMouseDown($event)\"\r\n     (mousemove)=\"onMouseMove($event)\"\r\n     class=\"Carousel\">\r\n  <ng-container *ngFor=\"let item of items\">\r\n    <ng-container [ngTemplateOutlet]=\"carouselItemTemplate\"\r\n                  [ngTemplateOutletContext]=\"{ $implicit: item }\">\r\n    </ng-container>\r\n  </ng-container>\r\n</div>\r\n",
+                    template: "<div #carousel\r\n     (scroll)=\"onScroll()\"\r\n     (mouseup)=\"onMouseUp()\"\r\n     (mousedown)=\"onMouseDown($event)\"\r\n     (mousemove)=\"onMouseMove($event)\"\r\n     class=\"Carousel\">\r\n  <ng-container *ngFor=\"let item of items\">\r\n    <ng-container [ngTemplateOutlet]=\"carouselItemTemplate\"\r\n                  [ngTemplateOutletContext]=\"{ $implicit: item }\">\r\n    </ng-container>\r\n  </ng-container>\r\n</div>\r\n",
                     styles: [":host{display:block}.Carousel{display:flex;flex-wrap:nowrap;padding:15px;overflow-y:hidden;white-space:nowrap;overflow-x:auto;cursor:-webkit-grab;cursor:grab;-ms-overflow-style:none;scrollbar-width:none;-ms-scroll-snap-type:x mandatory;scroll-snap-type:x mandatory}.Carousel::-webkit-scrollbar{display:none}"]
                 }] }
     ];
@@ -134,6 +159,7 @@ var CarouselComponent = /** @class */ (function () {
     CarouselComponent.propDecorators = {
         carouselItemTemplate: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ContentChild"], args: ['carouselItem', { static: true },] }],
         carousel: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"], args: ['carousel', { static: true },] }],
+        scrollEnd: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"] }],
         items: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"] }]
     };
     return CarouselComponent;
@@ -173,7 +199,7 @@ var CarouselModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <pnm-carousel [items]=\"cards\">\n    <ng-template #carouselItem\n                 let-item>\n      <div class=\"Carousel__Item card\">\n        {{item}}\n      </div>\n    </ng-template>\n  </pnm-carousel>\n</div>\n"
+module.exports = "<div>\n  <pnm-carousel [items]=\"cards\"\n                (scrollEnd)=\"onCarouselScrollEnd($event)\">\n    <ng-template #carouselItem\n                 let-item>\n      <div class=\"Carousel__Item card\">\n        {{item}}\n      </div>\n    </ng-template>\n  </pnm-carousel>\n</div>\n"
 
 /***/ }),
 
@@ -229,6 +255,9 @@ var AppComponent = /** @class */ (function () {
     function AppComponent() {
         this.cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
     }
+    AppComponent.prototype.onCarouselScrollEnd = function (event) {
+        console.log(event);
+    };
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-root',
