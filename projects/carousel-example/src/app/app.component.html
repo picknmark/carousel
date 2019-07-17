@@ -1,5 +1,6 @@
 <div>
-  <pnm-carousel [items]="cards">
+  <pnm-carousel [items]="cards"
+                (scrollEnd)="onCarouselScrollEnd($event)">
     <ng-template #carouselItem
                  let-item>
       <div class="Carousel__Item card">

@@ -31,14 +31,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+  
+  onCarouselScrollEnd(event: boolean) {
+      console.log(event);
+  }
 }
 ```
 ```typescript
 // app.component.html
-<pnm-carousel [items]="cards">
+<pnm-carousel [items]="cards"
+                (scrollEnd)="onCarouselScrollEnd($event)">
     <ng-template #carouselItem
                  let-item>
-      <div class="card">
+      <div class="Carousel__Item card">
         {{item}}
       </div>
     </ng-template>
@@ -65,6 +70,11 @@ export class AppComponent {
 ## Inputs
 ```typescript
 items: Array<any>;
+```
+
+## Outputs
+```typescript
+scrollEnd: EventEmitter<boolean>;
 ```
 
 ## Running unit tests

@@ -6,6 +6,8 @@ import {
   TemplateRef,
   ViewChild,
   AfterViewInit,
+  EventEmitter,
+  Output,
 } from '@angular/core';
 
 @Component({
@@ -18,6 +20,9 @@ export class CarouselComponent implements OnInit, AfterViewInit {
   // inner rendering
   @ContentChild('carouselItem', { static: true }) carouselItemTemplate: TemplateRef<any>;
   @ViewChild('carousel', { static: true }) carousel;
+
+  // outputs
+  @Output() scrollEnd: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   // inputs
   @Input() items: Array<any>;
@@ -77,5 +82,17 @@ export class CarouselComponent implements OnInit, AfterViewInit {
     const x = event.pageX - carousel.offsetLeft;
     const walk = (x - this.startX) * 0.75;
     carousel.scrollLeft = this.scrollLeft - walk;
+  }
+
+  /**
+   * emit true once the scroll of
+   * the carousel reaches 70% of its whole width
+   */
+  onScroll() {
+    const scrollLeft = this.carousel.nativeElement.scrollLeft;
+    const scrollWidth = this.carousel.nativeElement.scrollWidth;
+    if (scrollLeft >= scrollWidth * 0.70) {
+      this.scrollEnd.emit(true);
+    }
   }
 }
