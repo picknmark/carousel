@@ -1,10 +1,9 @@
 {
   "name": "@hmurrar/carousel",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "peerDependencies": {
     "@angular/common": "^8.0.3",
-    "@angular/core": "^8.0.3",
-    "scroll-behavior-polyfill": "^2.0.8"
+    "@angular/core": "^8.0.3"
   },
   "description": "Carousel library wrapper",
   "scripts": {

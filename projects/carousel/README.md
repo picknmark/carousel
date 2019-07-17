@@ -7,16 +7,13 @@ This library was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Installation
 ```bash
-npm install --save scroll-behavior-polyfill
-```
-```bash
 npm i --save @hmurrar/carousel
 ```
 
 ## Usage
 ```typescript
 // app.module.ts
-import { CarouselModule } from 'carousel';
+import { CarouselModule } from '@hm/carousel';
 
 @NgModule({
   imports: [CarouselModule]
@@ -38,8 +35,7 @@ export class AppComponent {
 ```
 ```typescript
 // app.component.html
-<pnm-carousel [items]="cards"
-              scrollSpeed="1">
+<pnm-carousel [items]="cards">
     <ng-template #carouselItem
                  let-item>
       <div class="card">
@@ -69,17 +65,6 @@ export class AppComponent {
 ## Inputs
 ```typescript
 items: Array<any>;
-scrollSpeed: CarouselSpeed = CarouselSpeed.default;
-```
-
-#### Carousel Speed
-```typescript
-export enum CarouselSpeed {
-  default,
-  fast,
-  fastest,
-}
-
 ```
 
 ## Running unit tests

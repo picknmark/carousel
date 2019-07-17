@@ -4,19 +4,16 @@ import {
   Input,
   OnInit,
   TemplateRef,
-  ViewChild
+  ViewChild,
+  AfterViewInit,
 } from '@angular/core';
-import 'scroll-behavior-polyfill';
-
-import { CarouselSpeed } from './carousel-speed.enum';
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'pnm-carousel',
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss']
 })
-export class CarouselComponent implements OnInit {
+export class CarouselComponent implements OnInit, AfterViewInit {
 
   // inner rendering
   @ContentChild('carouselItem', { static: true }) carouselItemTemplate: TemplateRef<any>;
@@ -24,10 +21,6 @@ export class CarouselComponent implements OnInit {
 
   // inputs
   @Input() items: Array<any>;
-  @Input() scrollSpeed: CarouselSpeed = CarouselSpeed.default;
-
-  // save setInterval value
-  private scrollTimeout;
 
   // is mouse down
   private isMouseDown = false;
@@ -38,44 +31,16 @@ export class CarouselComponent implements OnInit {
   // carousel scroll left
   private scrollLeft: number;
 
-  // debounce time before centering item
-  private debounceTime = 100;
-
   constructor() { }
 
   ngOnInit(): void {}
 
-  /**
-   *
-   * gets the element in the middle of the carousel
-   * then it scrollIntoView and center it
-   */
-  private _handleScroll() {
-    const carousel = this.carousel.nativeElement;
-    const x = carousel.clientWidth / 2;
-    const y = carousel.clientHeight / 2;
-    const element = document.elementFromPoint(x, y);
-
-    // scroll into element smoothly and center it
-    element.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center',
-      inline: 'center'
-    });
+  ngAfterViewInit(): void {
+    const carouselChildren = this.carousel.nativeElement.children;
+    for (const child of carouselChildren) {
+      child.style['scroll-snap-align'] = 'center';
+    }
   }
-
-  // handle carousel scroll
-  onScroll() {
-
-    // clear interval
-    clearTimeout(this.scrollTimeout);
-
-    // save interval
-    this.scrollTimeout = setTimeout(() => {
-      this._handleScroll();
-    }, this.debounceTime);
-  }
-
 
   /**
    * handles mouse down event
@@ -110,7 +75,7 @@ export class CarouselComponent implements OnInit {
     const carousel = this.carousel.nativeElement;
     event.preventDefault();
     const x = event.pageX - carousel.offsetLeft;
-    const walk = (x - this.startX) * this.scrollSpeed;
+    const walk = (x - this.startX) * 0.75;
     carousel.scrollLeft = this.scrollLeft - walk;
   }
 }
