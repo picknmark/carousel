@@ -7,7 +7,11 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "start_example": "ng serve --host=0.0.0.0 --disable-host-check",
+    "build_example": "ng build carousel-example",
+    "build_carousel": "ng build carousel",
+    "build_carousel_watch": "ng build carousel --watch"
   },
   "private": true,
   "dependencies": {
@@ -20,7 +24,6 @@
     "@angular/platform-browser-dynamic": "~8.0.0",
     "@angular/router": "~8.0.0",
     "rxjs": "~6.4.0",
-    "scroll-behavior-polyfill": "^2.0.8",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
   },
