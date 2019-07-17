@@ -99,7 +99,7 @@ CarouselComponent.decorators = [
     { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"], args: [{
                 selector: 'pnm-carousel',
                 template: "<div #carousel\r\n     (scroll)=\"onScroll()\"\r\n     (mouseup)=\"onMouseUp()\"\r\n     (mousedown)=\"onMouseDown($event)\"\r\n     (mousemove)=\"onMouseMove($event)\"\r\n     class=\"Carousel\">\r\n  <ng-container *ngFor=\"let item of items\">\r\n    <ng-container [ngTemplateOutlet]=\"carouselItemTemplate\"\r\n                  [ngTemplateOutletContext]=\"{ $implicit: item }\">\r\n    </ng-container>\r\n  </ng-container>\r\n</div>\r\n",
-                styles: [":host{display:block}.Carousel{display:flex;flex-wrap:nowrap;padding:15px;overflow-y:hidden;white-space:nowrap;overflow-x:auto;cursor:-webkit-grab;cursor:grab;-ms-overflow-style:none;scrollbar-width:none;-ms-scroll-snap-type:x mandatory;scroll-snap-type:x mandatory}.Carousel::-webkit-scrollbar{display:none}"]
+                styles: [":host{display:block}.Carousel{display:flex;flex-wrap:nowrap;padding:15px;overflow-y:hidden;white-space:nowrap;overflow-x:auto;cursor:-webkit-grab;cursor:grab;-ms-overflow-style:none;scrollbar-width:none;-ms-scroll-snap-type:x mandatory;scroll-snap-type:x mandatory;scroll-snap-type:mandatory;-ms-scroll-snap-type:mandatory;-webkit-scroll-snap-type:mandatory;-webkit-scroll-snap-destination:0 0;-webkit-overflow-scrolling:touch}.Carousel::-webkit-scrollbar{display:none}"]
             }] }
 ];
 /** @nocollapse */
