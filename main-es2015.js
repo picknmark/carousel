@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["main"],{
 
-/***/ "../../dist/carousel/fesm2015/carousel.js":
-/*!*************************************************************************************!*\
-  !*** C:/Users/hmurrar/WebstormProjects/carousel/dist/carousel/fesm2015/carousel.js ***!
-  \*************************************************************************************/
+/***/ "../../dist/carousel/fesm2015/hmurrar-carousel.js":
+/*!*********************************************************************************************!*\
+  !*** C:/Users/hmurrar/WebstormProjects/carousel/dist/carousel/fesm2015/hmurrar-carousel.js ***!
+  \*********************************************************************************************/
 /*! exports provided: CarouselComponent, CarouselModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -12,26 +12,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CarouselComponent", function() { return CarouselComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CarouselModule", function() { return CarouselModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var scroll_behavior_polyfill__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! scroll-behavior-polyfill */ "../../node_modules/scroll-behavior-polyfill/dist/index.js");
-/* harmony import */ var scroll_behavior_polyfill__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(scroll_behavior_polyfill__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "../../node_modules/@angular/common/fesm2015/common.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "../../node_modules/@angular/common/fesm2015/common.js");
 
 
-
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @enum {number} */
-const CarouselSpeed = {
-    default: 0,
-    fast: 1,
-    fastest: 2,
-};
-CarouselSpeed[CarouselSpeed.default] = 'default';
-CarouselSpeed[CarouselSpeed.fast] = 'fast';
-CarouselSpeed[CarouselSpeed.fastest] = 'fastest';
 
 /**
  * @fileoverview added by tsickle
@@ -39,53 +22,22 @@ CarouselSpeed[CarouselSpeed.fastest] = 'fastest';
  */
 class CarouselComponent {
     constructor() {
-        this.scrollSpeed = CarouselSpeed.default;
         // is mouse down
         this.isMouseDown = false;
-        // debounce time before centering item
-        this.debounceTime = 100;
     }
     /**
      * @return {?}
      */
     ngOnInit() { }
     /**
-     *
-     * gets the element in the middle of the carousel
-     * then it scrollIntoView and center it
-     * @private
      * @return {?}
      */
-    _handleScroll() {
+    ngAfterViewInit() {
         /** @type {?} */
-        const carousel = this.carousel.nativeElement;
-        /** @type {?} */
-        const x = carousel.clientWidth / 2;
-        /** @type {?} */
-        const y = carousel.clientHeight / 2;
-        /** @type {?} */
-        const element = document.elementFromPoint(x, y);
-        // scroll into element smoothly and center it
-        element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center',
-            inline: 'center'
-        });
-    }
-    // handle carousel scroll
-    /**
-     * @return {?}
-     */
-    onScroll() {
-        // clear interval
-        clearTimeout(this.scrollTimeout);
-        // save interval
-        this.scrollTimeout = setTimeout((/**
-         * @return {?}
-         */
-        () => {
-            this._handleScroll();
-        }), this.debounceTime);
+        const carouselChildren = this.carousel.nativeElement.children;
+        for (const child of carouselChildren) {
+            child.style['scroll-snap-align'] = 'center';
+        }
     }
     /**
      * handles mouse down event
@@ -123,16 +75,15 @@ class CarouselComponent {
         /** @type {?} */
         const x = event.pageX - carousel.offsetLeft;
         /** @type {?} */
-        const walk = (x - this.startX) * this.scrollSpeed;
+        const walk = (x - this.startX) * 0.75;
         carousel.scrollLeft = this.scrollLeft - walk;
     }
 }
 CarouselComponent.decorators = [
     { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"], args: [{
-                // tslint:disable-next-line:component-selector
                 selector: 'pnm-carousel',
-                template: "<div #carousel\r\n     (scroll)=\"onScroll()\"\r\n     (mouseup)=\"onMouseUp()\"\r\n     (mousedown)=\"onMouseDown($event)\"\r\n     (mousemove)=\"onMouseMove($event)\"\r\n     class=\"Carousel\">\r\n  <ng-container *ngFor=\"let item of items\">\r\n    <ng-container [ngTemplateOutlet]=\"carouselItemTemplate\"\r\n                  [ngTemplateOutletContext]=\"{ $implicit: item }\">\r\n    </ng-container>\r\n  </ng-container>\r\n</div>\r\n",
-                styles: [":host{display:block}.Carousel{display:flex;flex-wrap:nowrap;padding:15px;overflow-y:hidden;white-space:nowrap;overflow-x:auto;cursor:-webkit-grab;cursor:grab;-ms-overflow-style:none;scrollbar-width:none}.Carousel::-webkit-scrollbar{display:none}"]
+                template: "<div #carousel\r\n     (mouseup)=\"onMouseUp()\"\r\n     (mousedown)=\"onMouseDown($event)\"\r\n     (mousemove)=\"onMouseMove($event)\"\r\n     class=\"Carousel\">\r\n  <ng-container *ngFor=\"let item of items\">\r\n    <ng-container [ngTemplateOutlet]=\"carouselItemTemplate\"\r\n                  [ngTemplateOutletContext]=\"{ $implicit: item }\">\r\n    </ng-container>\r\n  </ng-container>\r\n</div>\r\n",
+                styles: [":host{display:block}.Carousel{display:flex;flex-wrap:nowrap;padding:15px;overflow-y:hidden;white-space:nowrap;overflow-x:auto;cursor:-webkit-grab;cursor:grab;-ms-overflow-style:none;scrollbar-width:none;-ms-scroll-snap-type:x mandatory;scroll-snap-type:x mandatory}.Carousel::-webkit-scrollbar{display:none}"]
             }] }
 ];
 /** @nocollapse */
@@ -140,8 +91,7 @@ CarouselComponent.ctorParameters = () => [];
 CarouselComponent.propDecorators = {
     carouselItemTemplate: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ContentChild"], args: ['carouselItem', { static: true },] }],
     carousel: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"], args: ['carousel', { static: true },] }],
-    items: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"] }],
-    scrollSpeed: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"] }]
+    items: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"] }]
 };
 
 /**
@@ -156,14 +106,14 @@ CarouselModule.decorators = [
                     CarouselComponent
                 ],
                 imports: [
-                    _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"]
+                    _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"]
                 ],
                 exports: [CarouselComponent]
             },] }
 ];
 
 
-//# sourceMappingURL=carousel.js.map
+//# sourceMappingURL=hmurrar-carousel.js.map
 
 
 /***/ }),
@@ -175,7 +125,7 @@ CarouselModule.decorators = [
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <pnm-carousel [items]=\"cards\"\n                scrollSpeed=\"1\">\n    <ng-template #carouselItem\n                 let-item>\n      <div class=\"Carousel__Item card\">\n        {{item}}\n      </div>\n    </ng-template>\n  </pnm-carousel>\n</div>\n"
+module.exports = "<div>\n  <pnm-carousel [items]=\"cards\">\n    <ng-template #carouselItem\n                 let-item>\n      <div class=\"Carousel__Item card\">\n        {{item}}\n      </div>\n    </ng-template>\n  </pnm-carousel>\n</div>\n"
 
 /***/ }),
 
@@ -258,7 +208,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "../../node_modules/@angular/platform-browser/fesm2015/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "../../node_modules/@angular/common/fesm2015/common.js");
-/* harmony import */ var carousel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! carousel */ "../../dist/carousel/fesm2015/carousel.js");
+/* harmony import */ var carousel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! carousel */ "../../dist/carousel/fesm2015/hmurrar-carousel.js");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 
 
