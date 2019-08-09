@@ -1,6 +1,6 @@
 {
   "name": "@hmurrar/carousel",
-  "version": "0.1.9",
+  "version": "0.1.11",
   "peerDependencies": {
     "@angular/common": "^8.0.3",
     "@angular/core": "^8.0.3"
@@ -13,7 +13,12 @@
   },
   "author": "@hmurrar",
   "license": "ISC",
-  "keywords" :["Angular", "Carousel", "Angular 8", "Angular CLI"],
+  "keywords": [
+    "Angular",
+    "Carousel",
+    "Angular 8",
+    "Angular CLI"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/picknmark/carousel.git"
