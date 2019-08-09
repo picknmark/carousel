@@ -70,6 +70,7 @@ export class AppComponent {
 ## Inputs
 ```typescript
 items: Array<any>;
+scrollEndThreshold: number = .75;
 ```
 
 ## Outputs

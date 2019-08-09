@@ -1,21 +1,22 @@
 import {
   Component,
   ContentChild,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
   TemplateRef,
   ViewChild,
-  AfterViewInit,
-  EventEmitter,
-  Output,
+  ViewEncapsulation,
 } from '@angular/core';
 
 @Component({
   selector: 'pnm-carousel',
   templateUrl: './carousel.component.html',
-  styleUrls: ['./carousel.component.scss']
+  styleUrls: ['./carousel.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
-export class CarouselComponent implements OnInit, AfterViewInit {
+export class CarouselComponent implements OnInit {
 
   // inner rendering
   @ContentChild('carouselItem', { static: true }) carouselItemTemplate: TemplateRef<any>;
@@ -26,6 +27,7 @@ export class CarouselComponent implements OnInit, AfterViewInit {
 
   // inputs
   @Input() items: Array<any>;
+  @Input() scrollEndThreshold: number = 0.75;
 
   // is mouse down
   private isMouseDown = false;
@@ -39,13 +41,6 @@ export class CarouselComponent implements OnInit, AfterViewInit {
   constructor() { }
 
   ngOnInit(): void {}
-
-  ngAfterViewInit(): void {
-    const carouselChildren = this.carousel.nativeElement.children;
-    for (const child of carouselChildren) {
-      child.style['scroll-snap-align'] = 'center';
-    }
-  }
 
   /**
    * handles mouse down event
@@ -91,7 +86,7 @@ export class CarouselComponent implements OnInit, AfterViewInit {
   onScroll() {
     const scrollLeft = this.carousel.nativeElement.scrollLeft;
     const scrollWidth = this.carousel.nativeElement.scrollWidth;
-    if (scrollLeft >= scrollWidth * 0.70) {
+    if (scrollLeft >= (scrollWidth - (scrollWidth * this.scrollEndThreshold))) {
       this.scrollEnd.emit(true);
     }
   }
